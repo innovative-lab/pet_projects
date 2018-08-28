@@ -1,0 +1,40 @@
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html{
+            height: 100%;
+            width: 100%;
+        }
+
+        .container {
+            width: 100%;
+            padding: 20px;
+            display: flex;
+            background-color: chocolate;
+            justify-content: space-around;
+            flex-flow: row;
+        }
+
+        .box {
+            height: 400px;
+            width: 30%;
+            background-color: darkslategrey;
+            border-radius: 5%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center
+        }
+
+        #image1,#image2,#image3 {
+            /* background: url(./images/sprite_home.png) 0 0; */
+            height: 40%;
+            width: 25%;
+        }
+        #load_percent1,#load_percent2,#load_percent3{
+            font-size: 24px;
+            color: white;
+            font-family: cursive;
+        }

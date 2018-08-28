@@ -1,0 +1,39 @@
+{
+    "name": "Nungura Travels",
+    "number": "OD-01-EK-8553",
+    "totalSeats": 8,
+    "seatDetails": [
+        {
+            "seat_no": 1,
+            "status": "available"
+        },
+        {
+            "seat_no": 2,
+            "status": "available"
+        },
+        {
+            "seat_no": 3,
+            "status": "available"
+        },
+        {
+            "seat_no": 4,
+            "status": "available"
+        },
+        {
+            "seat_no": 5,
+            "status": "available"
+        },
+        {
+            "seat_no": 6,
+            "status": "available"
+        },
+        {
+            "seat_no": 7,
+            "status": "available"
+        },
+        {
+            "seat_no": 8,
+            "status": "available"
+        }
+    ]
+}

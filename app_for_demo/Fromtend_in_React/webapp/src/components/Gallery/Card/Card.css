@@ -1,0 +1,53 @@
+span{
+       color: black !important;
+        display: inline-block;
+        text-align: center;
+        padding:0px 5px;
+        text-decoration: none;
+        cursor: initial;    
+        white-space: pre;
+}
+.card{
+    position: relative;
+    height: 250px;
+    width: 300px;
+    background-color: white;
+    margin-right: 1rem;
+    border: 1px solid silver;
+    border-radius: 5px;
+    background-image: url('https://picsum.photos/300/300?random');
+}
+
+.card_body{
+    position: absolute;
+    bottom: 0;
+    height: 150px;
+    width: 100%;
+    background-color: rgba(116,206,174,0.8);
+    color:white;
+    transition: height 1s; 
+}
+.card_body:hover{
+    height: 100%;
+}
+.card_body__title{
+    padding:0.5rem;
+    height: 40px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+    font-family: 'Playfair Display';
+    font-size: 22px;
+    text-align: left;
+
+}
+.card_body__subject{
+    height: 110px;
+    width: 100%;
+    font-size: 18px;
+    text-align: left;
+    padding:0.5rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.2rem;
+}

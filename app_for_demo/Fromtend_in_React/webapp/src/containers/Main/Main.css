@@ -1,0 +1,23 @@
+.Main{
+    background-image: url('../../assets/images/wall_holder.png');
+    background-repeat: repeat;
+    height: 100%;
+}
+.NavigationLinks{
+    display: flex;
+    flex-flow: column-reverse;
+    margin-left: 1rem;
+}
+.mainContent{
+    padding-top: 100px;
+    height: 100%;
+}
+.MicroControl{
+    width: 20%;
+    height: 70%;
+    float: left;
+}
+.NewsFeed{
+    width:60%;
+    float: left;
+}

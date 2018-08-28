@@ -1,0 +1,73 @@
+<html>
+
+<head>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        .outer_container {
+            width: 610px;
+            height: 610px;
+            border: 1px solid black;
+            position: relative; 
+            /* display: flex;  
+            align-items: center;
+            justify-content: center; */
+        }
+
+        .outer_container>* {
+            vertical-align: middle;
+        }
+
+        .inner_container1,
+        .inner_container2,
+        .inner_container3 {
+            border: 1px solid green;
+            height: 200px;
+            width: 200px;
+            display:            block;
+            overflow: auto;
+            text-align: center;
+            font-size: 20px;
+            /* margin: auto;
+            vertical-align: middle;  */
+        }
+
+        @media screen and (min-width: 800px) {
+            .inner_container1,
+            .inner_container2,
+            .inner_container3 {
+                display: inline-block;
+            }
+            .inner_container1 {
+                /* position: static; */
+                margin-left: 200px;
+            }
+            .inner_container2 {
+                position: absolute;
+                right: 0;
+            }
+            .inner_container1 {
+                position: absolute;
+                left: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class='outer_container'>
+        <div class='inner_container1'>
+            1
+        </div>
+        <div class='inner_container2'>
+            2
+        </div>
+        <div class='inner_container3'>
+            3
+        </div>
+    </div>
+</body>
+
+</html>

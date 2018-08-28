@@ -1,0 +1,42 @@
+.MicroControl{
+    height: 100%;
+    width: 100%;
+    padding: 0rem 1rem;
+
+}
+.Profile_header{
+    width: 100%;
+    height: 25%;
+    display: flex;
+    flex-flow: row;
+}
+.Profile_header__profile_pic{
+    width: 30%;
+    height: 70%;
+}
+.Profile_header__profile_pic img{
+    height: 100%;
+    width: 100%;
+}
+.Profile_header__profile_desc{
+    width: 70%;
+    height: 70%;
+    display: flex;
+    flex-flow: column;
+    flex-direction: column;
+    text-align: left;
+    padding: 0.5rem 1rem;
+    line-height: 1.5rem;
+}
+.Profile_header__profile_desc__name{
+    font-family: 'Montserrat';
+    font-weight: 600;
+    font-size: 18px;
+    text-align: left;
+}
+.Profile_header__profile_desc__email{
+    text-align: left;
+}
+.Profile_header__profile_desc__phone{
+    text-align: left;
+}

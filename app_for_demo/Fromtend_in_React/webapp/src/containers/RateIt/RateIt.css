@@ -1,0 +1,37 @@
+.RateItTemplate{
+    min-height: calc(100vh - 120px);
+    background-color: white;
+    width:100%;
+    margin: auto;
+}
+.category{
+    text-align: left;
+}
+.categoryHolder{
+    display: flex;
+    flex-flow: row;
+    width: 100%;
+    padding: 0.5rem;
+}
+.title{
+    font-weight: 600;
+    font-size: 20px;
+}
+.place{
+    padding: 0.2rem 0.4rem;
+    border: 2px solid rgb(78,130,112);
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 600;
+    color:rgb(78,130,112);
+    cursor: pointer;
+    margin-right: 1rem;
+}
+.place:hover{
+    color:white;
+    background-color: rgb(78,130,112);
+}
+.input{
+    padding: 0.2rem 0.5rem;
+    width:50%; 
+}

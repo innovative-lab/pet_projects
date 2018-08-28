@@ -1,0 +1,107 @@
+.login{
+    width: 100%;
+    height: 100vh;  
+    background: url('https://picsum.photos/1900/900?random');
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+.login:hover:before{ 
+    content: '';
+    width: 100%;
+    height: 100vh;
+    background: url('https://picsum.photos/1900/900?random');
+    background-repeat: no-repeat;
+    background-position: 10px 0px;
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0.5;
+    animation: glitch .2s infinite;
+}
+
+@keyframes glitch{
+    0%{
+        background-position: 10px 0px;
+        filter: hue-rotate(0deg);
+    }
+    10%{
+        background-position: -10px 10px;
+    }
+    20%{
+        background-position: 45px 10px;
+    }
+    40%{
+        background-position: -10px 0px;
+    }
+    70%{
+        background-position: -20px -20px;
+    }
+    100%{
+        background-position: 10px 0px;
+        filter: hue-rotate(360deg);
+    }
+}
+
+.login_box{
+    padding: 2rem 1rem;
+    height: inherit;
+    width: 600px;
+    height: auto;
+    margin: auto;
+    top: 50%;
+    margin-top:-200px;
+    left: 50%;
+    margin-left:-300px;
+    background-color:rgba(115,209,177,0.8);
+    position:  absolute;
+}
+.loginForm{
+    text-align: left !important;
+    margin: auto;
+    width: 300px;
+}
+.formGroup__haeder{
+    font-weight: 600;
+}
+.formControl{
+    width: 100%;
+    padding: 0.3rem 0.5rem;
+}
+.btnSubmit{
+    padding: 0.3rem 0.5rem;
+    border: 2px solid rgb(78,130,112);
+    color: rgb(78,130,112);
+    background-color: rgb(183,230,214);
+    font-weight: 600;
+}
+.btnSubmit:hover,
+.btnSubmit.active{
+    background-color:  rgb(78,130,112);
+    color: rgb(183,230,214);
+}
+
+.title,.actions{
+    width: 50%;
+    float: left;
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+}
+.title{  
+    text-align: left;
+    font-size: 36px;
+    font-weight: 500;
+    color: rgb(78,130,112);
+    font-family: 'Montserrat';
+}
+.actions{
+    flex-flow: row-reverse;
+}
+.login_btn{
+    margin-right: 1rem;
+}
+.form_header{
+    font-family: 'Montserrat';
+}

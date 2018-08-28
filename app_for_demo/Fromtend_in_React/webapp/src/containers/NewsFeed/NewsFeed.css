@@ -1,0 +1,16 @@
+.NewsFeedTemplate{
+    min-height: calc(100vh - 120px);
+    background-color: transparent;
+    width:100%;
+    margin: auto;
+}
+.NewsFeedTemplate input{
+    padding: 0.5rem 1rem;
+    font-size: 18px;
+    width: 100%;
+}
+
+
+
+
+

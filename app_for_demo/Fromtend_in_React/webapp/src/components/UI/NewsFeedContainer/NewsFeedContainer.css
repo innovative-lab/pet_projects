@@ -1,0 +1,7 @@
+.newsFeedContainer{
+    padding: 1rem;
+    background-color: white;
+    margin-bottom: 1rem;
+    border-radius:5px;
+    border: 1px solid  silver; 
+}
