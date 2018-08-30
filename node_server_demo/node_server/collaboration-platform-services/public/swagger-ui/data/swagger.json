@@ -1,0 +1,3559 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Collaboration-services",
+    "description": "This API provides services for the collaboration platform.You can retreive an Azure AD bearer token by clicking linke below and copy the access_token value in the redirected URL and paste it in the Authorization field as Bearer access_token",
+    "version": "1.0.0",
+    "termsOfService": "https://coe.mindtree.com/coe_advwebtech/",
+    "license": {
+      "name": "click here to get the access  token",
+      "url": "https://login.microsoftonline.com/85c997b9-f494-46b3-a11d-772983cf6f11/oauth2/authorize?response_type=token&client_id=b714e2a4-ed6d-41c7-9825-8ea1005ea4a8&redirect_uri=http://collaboration-platform&state=6b357601-600f-437c-a511-8d7660edfd6c&nux=1&resource=http://collaboration-platform-services&client-request-id=7263321b-8d49-415c-920d-7a525fa37555&x-client-SKU=Js&x-client-Ver=1.0.8&nonce=5fe6955c-87ad-46ce-9725-8ca196e09323"
+    }
+  },
+  "host": "localhost:9000",
+  "schemes": [
+    "http"
+  ],
+  "basePath": "/",
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/collab-services/apis/link/preview": {
+      "get": {
+        "summary": "Preview Of the Link",
+        "description": "Getting the preview of the link provided",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "jwt token",
+            "type": "string"
+          },
+          {
+            "name": "link",
+            "in": "query",
+            "description": "Name Of the Link for which the preview is needed.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Link"
+        ],
+        "responses": {
+          "200": {
+            "description": "Preview Of The Link",
+            "schema": {
+              "$ref": "#/definitions/response"
+            }
+          },
+          "500": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/collab-services/apis/users/mostFollowed": {
+      "get": {
+        "summary": "get most followed User ",
+        "description": "get the most followed user",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "jwt token",
+            "type": "string"
+          },
+          {
+            "name": "psize",
+            "in": "query",
+            "description": "Number of users to be returned.",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "tags": [
+          "User"
+        ],
+        "responses": {
+          "200": {
+            "description": "most followed user",
+            "schema": {
+              "$ref": "#/definitions/response"
+            }
+          },
+          "500": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/collab-services/apis/users/{username}/followUnfollow/{followValue}": {
+      "post": {
+        "500": {
+          "description": "unexpected error",
+          "schema": {
+            "$ref": "#/definitions/Error"
+          }
+        },
+        "summary": "follow/unfollow the user",
+        "description": "follow/unfollow the user\n",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "description": "username to whom you need to follow",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "followValue",
+            "in": "path",
+            "description": "value to represent follow or unfollow operation. O=unfollow; 1 or any non-zero value=follow",
+            "required": true,
+            "type": "interger",
+            "format": "int64"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "jwt token",
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "User"
+        ],
+        "responses": {
+          "200": {
+            "description": "user follow operation response",
+            "schema": {
+              "$ref": "#/definitions/response"
+            }
+          }
+        }
+      }
+    },
+    "/collab-services/apis/channels/": {
+      "post": {
+        "500": {
+          "description": "unexpected error",
+          "schema": {
+            "$ref": "#/definitions/Error"
+          }
+        },
+        "summary": "create a new channel",
+        "description": "create a new channel\n",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "content",
+            "in": "body",
+            "description": "content",
+            "schema": {
+              "$ref": "#/definitions/ChannelRequest"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "jwt token",
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Channel"
+        ],
+        "responses": {
+          "200": {
+            "description": "user follow operation response",
+            "schema": {
+              "$ref": "#/definitions/response"
+            }
+          }
+        }
+      }
+    },
+    "/collab-services/apis/activities/user/{username}": {
+      "get": {
+        "summary": "get activities",
+        "description": "get all activities",
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "description": "username",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "pno",
+            "in": "query",
+            "description": "page number",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "psize",
+            "in": "query",
+            "description": "Number of activities to be returned.",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "jwt token",
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Activity"
+        ],
+        "responses": {
+          "200": {
+            "description": "activities response",
+            "schema": {
+              "$ref": "#/definitions/response"
+            }
+          },
+          "500": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/collab-services/apis/channels/user/{username}": {
+      "get": {
+        "summary": "get channels that user belongs to",
+        "description": "get channels that user belongs to",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "jwt token",
+            "type": "string"
+          },
+          {
+            "name": "username",
+            "in": "path",
+            "description": "username of the user",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Channel"
+        ],
+        "responses": {
+          "200": {
+            "description": "user followers response",
+            "schema": {
+              "$ref": "#/definitions/response"
+            }
+          },
+          "500": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/collab-services/apis/channels/{channelId}/details": {
+      "get": {
+        "summary": "get channel details by id",
+        "description": "get channel details by id",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "jwt token",
+            "type": "string"
+          },
+          {
+            "name": "channelId",
+            "in": "path",
+            "description": "channel id to get channel details",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Channel"
+        ],
+        "responses": {
+          "200": {
+            "description": "user followers response",
+            "schema": {
+              "$ref": "#/definitions/response"
+            }
+          },
+          "500": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/collab-services/apis/channels/{channelId}/messages": {
+      "post": {
+        "summary": "post a message in channel",
+        "description": "post a message in channel",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "jwt token",
+            "type": "string"
+          },
+          {
+            "name": "channelId",
+            "in": "path",
+            "description": "channel id to which user to be added",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "message",
+            "in": "body",
+            "description": "content",
+            "schema": {
+              "$ref": "#/definitions/MessageRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Channel"
+        ],
+        "responses": {
+          "200": {
+            "description": "user followers response",
+            "schema": {
+              "$ref": "#/definitions/response"
+            }
+          },
+          "500": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "get messages in channel",
+        "description": "get messages in channel",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "jwt token",
+            "type": "string"
+          },
+          {
+            "name": "channelId",
+            "in": "path",
+            "description": "channel id to which messages are needed",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "pno",
+            "in": "query",
+            "description": "page number",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "psize",
+            "in": "query",
+            "description": "Number of stream to be returned.",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "tags": [
+          "Channel"
+        ],
+        "responses": {
+          "200": {
+            "description": "user followers response",
+            "schema": {
+              "$ref": "#/definitions/response"
+            }
+          },
+          "500": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/collab-services/apis/channels/{channelId}/user/{username}": {
+      "post": {
+        "summary": "add members to the channel",
+        "description": "add members to the channel",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "jwt token",
+            "type": "string"
+          },
+          {
+            "name": "channelId",
+            "in": "path",
+            "description": "channel id to which user to be added",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "username",
+            "in": "path",
+            "description": "username of the user",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Channel"
+        ],
+        "responses": {
+          "200": {
+            "description": "user followers response",
+            "schema": {
+              "$ref": "#/definitions/response"
+            }
+          },
+          "500": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "delete members from channel",
+        "description": "delete members from channel",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "jwt token",
+            "type": "string"
+          },
+          {
+            "name": "channelId",
+            "in": "path",
+            "description": "channel id to which user to be added",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "username",
+            "in": "path",
+            "description": "username of the user",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Channel"
+        ],
+        "responses": {
+          "200": {
+            "description": "user followers response",
+            "schema": {
+              "$ref": "#/definitions/response"
+            }
+          },
+          "500": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/collab-services/apis/channels/me": {
+      "get": {
+        "summary": "get channels that logged in user belongs to",
+        "description": "get channels that loggedin user belongs to",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "jwt token",
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Channel"
+        ],
+        "responses": {
+          "200": {
+            "description": "user followers response",
+            "schema": {
+              "$ref": "#/definitions/response"
+            }
+          },
+          "500": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/collab-services/apis/users/followings": {
+      "get": {
+        "summary": "get followers of user ",
+        "description": "get followers of user",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "jwt token",
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "User"
+        ],
+        "responses": {
+          "200": {
+            "description": "user followers response",
+            "schema": {
+              "$ref": "#/definitions/response"
+            }
+          },
+          "500": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/collab-services/apis/streams/content/user/me": {
+      "get": {
+        "summary": "get stream content",
+        "description": "get stream content",
+        "parameters": [
+          {
+            "name": "pno",
+            "in": "query",
+            "description": "page number",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "psize",
+            "in": "query",
+            "description": "Number of stream to be returned.",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "tags",
+            "in": "query",
+            "description": "Number of stream to be returned.",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "followers",
+            "in": "query",
+            "description": "Number of stream to be returned.",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "jwt token",
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Streams"
+        ],
+        "responses": {
+          "200": {
+            "description": "stream response",
+            "schema": {
+              "$ref": "#/definitions/response"
+            }
+          },
+          "500": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/collab-services/apis/streams/mostSubscribed": {
+      "get": {
+        "summary": "get most subscribed stream ",
+        "description": "get the most subscribed stream",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "jwt token",
+            "type": "string"
+          },
+          {
+            "name": "psize",
+            "in": "query",
+            "description": "Number of streams to be returned.",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "tags": [
+          "Streams"
+        ],
+        "responses": {
+          "200": {
+            "description": "most subscribed stream",
+            "schema": {
+              "$ref": "#/definitions/response"
+            }
+          },
+          "500": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/collab-services/apis/streams/{streamName}": {
+      "post": {
+        "summary": "add the stream in the collaboration platform",
+        "description": "add stream",
+        "parameters": [
+          {
+            "name": "streamName",
+            "in": "path",
+            "description": "Name of the stream to be created",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "jwt token",
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Streams"
+        ],
+        "responses": {
+          "200": {
+            "description": "collab-services ",
+            "schema": {
+              "$ref": "#/definitions/response"
+            }
+          },
+          "500": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/collab-services/apis/streams": {
+      "get": {
+        "summary": "get all streams",
+        "description": "get all streams",
+        "parameters": [
+          {
+            "name": "pno",
+            "in": "query",
+            "description": "page number",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "psize",
+            "in": "query",
+            "description": "Number of stream to be returned.",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "jwt token",
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Streams"
+        ],
+        "responses": {
+          "200": {
+            "description": "stream response",
+            "schema": {
+              "$ref": "#/definitions/response"
+            }
+          },
+          "500": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/collab-services/apis/streams/user/me": {
+      "get": {
+        "summary": "get streams of a user",
+        "description": "get streams of a user\n",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "jwt token",
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Streams"
+        ],
+        "responses": {
+          "200": {
+            "description": "blog response",
+            "schema": {
+              "$ref": "#/definitions/response"
+            }
+          },
+          "500": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/collab-services/apis/streams/mostUsed/counts": {
+      "get": {
+        "summary": "get most used streams count",
+        "description": "get most used streams count\n",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "jwt token",
+            "type": "string"
+          },
+          {
+            "name": "psize",
+            "in": "query",
+            "description": "Number of streams to be returned.",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "tags": [
+          "Streams"
+        ],
+        "responses": {
+          "200": {
+            "description": "streams response",
+            "schema": {
+              "$ref": "#/definitions/response"
+            }
+          },
+          "500": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/collab-services/apis/streams/{streamName}/subscribeUnsubscribe/{isSubscribed}": {
+      "put": {
+        "summary": "unsubscribe or subscribe a stream",
+        "description": "unsubscribe or subscribe a stream\n",
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "jwt token",
+            "type": "string"
+          },
+          {
+            "name": "streamName",
+            "in": "path",
+            "description": "name of the stream",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "isSubscribed",
+            "in": "path",
+            "description": "value to represent subscription or unsubscription operation. O=unsubscribe; 1 or any non-zero value=subscribe",
+            "required": true,
+            "type": "interger",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "Streams"
+        ],
+        "responses": {
+          "200": {
+            "description": "collab-services ",
+            "schema": {
+              "$ref": "#/definitions/UserUpdate"
+            }
+          },
+          "500": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/collab-services/apis/posts": {
+      "post": {
+        "summary": "post the posts in the collaboration platform",
+        "description": "add posts",
+        "parameters": [
+          {
+            "name": "content",
+            "in": "body",
+            "description": "content",
+            "schema": {
+              "$ref": "#/definitions/postRequest"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "jwt token",
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Post"
+        ],
+        "responses": {
+          "200": {
+            "description": "collab-services ",
+            "schema": {
+              "$ref": "#/definitions/response"
+            }
+          },
+          "500": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "get posts",
+        "description": "get all posts",
+        "parameters": [
+          {
+            "name": "pno",
+            "in": "query",
+            "description": "page number",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "psize",
+            "in": "query",
+            "description": "Number of posts to be returned.",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "jwt token",
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Post"
+        ],
+        "responses": {
+          "200": {
+            "description": "blog response",
+            "schema": {
+              "$ref": "#/definitions/response"
+            }
+          },
+          "500": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/collab-services/apis/posts/{postId}": {
+      "delete": {
+        "summary": "delete the post",
+        "description": "delete post\n",
+        "parameters": [
+          {
+            "name": "postId",
+            "in": "path",
+            "description": "post id",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "jwt token",
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Post"
+        ],
+        "responses": {
+          "200": {
+            "description": "message whether deleted or not",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/response"
+              }
+            }
+          },
+          "500": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/collab-services/apis/posts/{postId}/likeUnlike/{likeValue}": {
+      "post": {
+        "500": {
+          "description": "unexpected error",
+          "schema": {
+            "$ref": "#/definitions/Error"
+          }
+        },
+        "summary": "like/unlike the post",
+        "description": "like/unlike the post\n",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "postId",
+            "in": "path",
+            "description": "id of post",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "likeValue",
+            "in": "path",
+            "description": "value to represent like or unlike operation. O=Unlike; 1 or any non-zero value=Like",
+            "required": true,
+            "type": "interger",
+            "format": "int64"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "jwt token",
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Post"
+        ],
+        "responses": {
+          "200": {
+            "description": "blog response",
+            "schema": {
+              "$ref": "#/definitions/response"
+            }
+          }
+        }
+      }
+    },
+    "/collab-services/apis/blogs/user/me": {
+      "get": {
+        "summary": "get all blogs of logged in user",
+        "description": "get published and saved blogs written by logged in user",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "jwt token",
+            "type": "string"
+          },
+          {
+            "name": "pno",
+            "in": "query",
+            "description": "page number",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "psize",
+            "in": "query",
+            "description": "Number of blogs to be returned.",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "tags": [
+          "Blog"
+        ],
+        "responses": {
+          "200": {
+            "description": "blog response",
+            "schema": {
+              "$ref": "#/definitions/myBlogsResponse"
+            }
+          },
+          "500": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/collab-services/apis/discussions/user/{userName}": {
+      "get": {
+        "summary": "get discussions written by a particular user",
+        "description": "get discussions written by a particular user\n",
+        "parameters": [
+          {
+            "name": "pno",
+            "in": "query",
+            "description": "page number",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "psize",
+            "in": "query",
+            "description": "Number of discussions to be returned.",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "userName",
+            "in": "path",
+            "description": "name of the tagName",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "jwt token",
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Discussion"
+        ],
+        "responses": {
+          "200": {
+            "description": "blog response",
+            "schema": {
+              "$ref": "#/definitions/response"
+            }
+          },
+          "500": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/collab-services/apis/users/counts": {
+      "get": {
+        "summary": "Total Counts By Author",
+        "description": "TotalCountOf Blogs,Discussions And Answers\n",
+        "parameters": [
+          {
+            "name": "username",
+            "in": "query",
+            "description": "username of the user",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "jwt token",
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "User"
+        ],
+        "responses": {
+          "200": {
+            "description": "Counts Of Blogs",
+            "schema": {
+              "type": "object",
+              "items": {
+                "$ref": "#/definitions/DashBoardCounts"
+              }
+            }
+          },
+          "500": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/collab-services/apis/discussions/user/me": {
+      "get": {
+        "summary": "get all Discussions by logged in user",
+        "description": "get published and saved Discussions of loggedin userf",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "jwt token",
+            "type": "string"
+          },
+          {
+            "name": "pno",
+            "in": "query",
+            "description": "page number",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "psize",
+            "in": "query",
+            "description": "Number of Discussions to be returned.",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "tags": [
+          "Discussion"
+        ],
+        "responses": {
+          "200": {
+            "description": "blog response",
+            "schema": {
+              "$ref": "#/definitions/response"
+            }
+          },
+          "500": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/collab-services/apis/categories/extract-tags": {
+      "post": {
+        "summary": "extract tags for the content",
+        "description": "extract tags",
+        "parameters": [
+          {
+            "name": "content",
+            "in": "body",
+            "description": "content",
+            "schema": {
+              "$ref": "#/definitions/Content"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "jwt token",
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Category"
+        ],
+        "responses": {
+          "200": {
+            "description": "collab-services ",
+            "schema": {
+              "$ref": "#/definitions/response"
+            }
+          },
+          "500": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/collab-services/apis/categories/{categoryName}/tags": {
+      "get": {
+        "summary": "get subtags of tag",
+        "description": "get subtags for tag\n",
+        "parameters": [
+          {
+            "name": "categoryName",
+            "in": "path",
+            "description": "name of the tagName",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "jwt token",
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Category"
+        ],
+        "responses": {
+          "200": {
+            "description": "collab-services ",
+            "schema": {
+              "$ref": "#/definitions/response"
+            }
+          },
+          "500": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/collab-services/apis/blogs/category/{categoryName}": {
+      "get": {
+        "summary": "get blogs of a tag",
+        "description": "get blogs of a tag\n",
+        "parameters": [
+          {
+            "name": "pno",
+            "in": "query",
+            "description": "page number",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "psize",
+            "in": "query",
+            "description": "Number of blogs to be returned.",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "categoryName",
+            "in": "path",
+            "description": "name of the tagName",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "jwt token",
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Blog"
+        ],
+        "responses": {
+          "200": {
+            "description": "blog response",
+            "schema": {
+              "$ref": "#/definitions/response"
+            }
+          },
+          "500": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/collab-services/apis/dashboard/counts": {
+      "get": {
+        "summary": "TotalCounts",
+        "description": "TotalCountOf Blogs,Discussion,blogand Answers\n",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "jwt token",
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "DashBoard"
+        ],
+        "responses": {
+          "200": {
+            "description": "Counts",
+            "schema": {
+              "type": "object",
+              "items": {
+                "$ref": "#/definitions/DashBoardCounts"
+              }
+            }
+          },
+          "500": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/collab-services/apis/dashboard/blogs/counts": {
+      "get": {
+        "summary": "All and author blog counts",
+        "description": "Count of all blogs and author published/drafted blogs",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "jwt token",
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "DashBoard"
+        ],
+        "responses": {
+          "200": {
+            "description": "Counts",
+            "schema": {
+              "type": "object",
+              "items": {
+                "$ref": "#/definitions/DashBoardCounts"
+              }
+            }
+          },
+          "500": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/collab-services/apis/dashboard/discussions/counts": {
+      "get": {
+        "summary": "All and author discussions counts",
+        "description": "Count of all discussions and author published/drafted discussions",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "jwt token",
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "DashBoard"
+        ],
+        "responses": {
+          "200": {
+            "description": "Counts",
+            "schema": {
+              "type": "object",
+              "items": {
+                "$ref": "#/definitions/DashBoardCounts"
+              }
+            }
+          },
+          "500": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/collab-services/apis/userinfo/profilepic": {
+      "put": {
+        "summary": "update profilepic of user",
+        "description": "update profilepic of user\n",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "jwt token",
+            "type": "string"
+          },
+          {
+            "name": "profile",
+            "in": "body",
+            "description": "profile",
+            "schema": {
+              "$ref": "#/definitions/updateProfilePic"
+            }
+          }
+        ],
+        "tags": [
+          "User"
+        ],
+        "responses": {
+          "200": {
+            "description": "Counts",
+            "schema": {
+              "type": "object",
+              "items": {
+                "$ref": "#/definitions/DashBoardCounts"
+              }
+            }
+          },
+          "500": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/collab-services/apis/categories/blogs": {
+      "get": {
+        "summary": "get blogs of a tag",
+        "description": "get blogs of a tag\n",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "jwt token",
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Category"
+        ],
+        "responses": {
+          "200": {
+            "description": "blog response",
+            "schema": {
+              "$ref": "#/definitions/response"
+            }
+          },
+          "500": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/collab-services/apis/blogs": {
+      "get": {
+        "summary": "all blogs",
+        "description": "display all the blogs\n",
+        "parameters": [
+          {
+            "name": "pno",
+            "in": "query",
+            "description": "page number",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "psize",
+            "in": "query",
+            "description": "Number of blogs to be returned.",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "jwt token",
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Blog"
+        ],
+        "responses": {
+          "200": {
+            "description": "An array of blogs",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/response"
+              }
+            }
+          },
+          "500": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "edit a blog",
+        "description": "edit the blog\n",
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "blogId",
+            "in": "query",
+            "description": "id of blog",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "body",
+            "schema": {
+              "$ref": "#/definitions/BlogEdit"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "jwt token",
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Blog"
+        ],
+        "responses": {
+          "200": {
+            "description": "collab-services ",
+            "schema": {
+              "$ref": "#/definitions/response"
+            }
+          },
+          "500": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "create a blog",
+        "description": "create the blog\n",
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "body",
+            "schema": {
+              "$ref": "#/definitions/BlogRequest"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "jwt token",
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Blog"
+        ],
+        "responses": {
+          "200": {
+            "description": "collab-services ",
+            "schema": {
+              "$ref": "#/definitions/response"
+            }
+          },
+          "500": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/collab-services/apis/blogs/{blogId}/comment/{commentId}": {
+      "delete": {
+        "summary": "delete the comment",
+        "description": "delete comment\n",
+        "parameters": [
+          {
+            "name": "blogId",
+            "in": "path",
+            "description": "blog id",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "commentId",
+            "in": "path",
+            "description": "comment id",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "jwt token",
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Blog"
+        ],
+        "responses": {
+          "200": {
+            "description": "An array of blogs",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/response"
+              }
+            }
+          },
+          "500": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/collab-services/apis/blogs/{id}": {
+      "get": {
+        "summary": "get blog for an blog_id",
+        "description": "get blog for id\n",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id of blog",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "viewValue",
+            "in": "query",
+            "description": "whether to increment view or not",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "jwt token",
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Blog"
+        ],
+        "responses": {
+          "200": {
+            "description": "collab-services ",
+            "schema": {
+              "$ref": "#/definitions/response"
+            }
+          },
+          "500": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "delete blog for given blog_id",
+        "description": "delete blog for given blog_id\n",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id of blog",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "jwt token",
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Blog"
+        ],
+        "responses": {
+          "204": {
+            "description": "collab-services ",
+            "schema": {
+              "$ref": "#/definitions/response"
+            }
+          },
+          "500": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/collab-services/apis/blogs/{id}/comment": {
+      "post": {
+        "summary": "comment on blog",
+        "description": "comment on blog\n",
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id of blog",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "request object",
+            "schema": {
+              "$ref": "#/definitions/CommentRequest"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "jwt token",
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Blog"
+        ],
+        "responses": {
+          "200": {
+            "description": "collab-services ",
+            "schema": {
+              "$ref": "#/definitions/response"
+            }
+          },
+          "500": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/collab-services/apis/blogs/{blogId}/likeUnlike/{likeValue}": {
+      "post": {
+        "500": {
+          "description": "unexpected error",
+          "schema": {
+            "$ref": "#/definitions/Error"
+          }
+        },
+        "summary": "like the blog",
+        "description": "like the blog\n",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "blogId",
+            "in": "path",
+            "description": "id of blog",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "likeValue",
+            "in": "path",
+            "description": "value to represent like or unlike operation. O=Unlike; 1 or any non-zero value=Like",
+            "required": true,
+            "type": "interger",
+            "format": "int64"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "jwt token",
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Blog"
+        ],
+        "responses": {
+          "200": {
+            "description": "blog response",
+            "schema": {
+              "$ref": "#/definitions/response"
+            }
+          }
+        }
+      }
+    },
+    "/collab-services/apis/blogs/{blogId}/comments": {
+      "get": {
+        "summary": "get comments of blog_id",
+        "description": "get comments for blog id\n",
+        "parameters": [
+          {
+            "name": "blogId",
+            "in": "path",
+            "description": "id of blog",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "jwt token",
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Blog"
+        ],
+        "responses": {
+          "200": {
+            "description": "collab-services response",
+            "schema": {
+              "$ref": "#/definitions/response"
+            }
+          },
+          "500": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/collab-services/apis/users": {
+      "post": {
+        "500": {
+          "description": "unexpected error",
+          "schema": {
+            "$ref": "#/definitions/Error"
+          }
+        },
+        "summary": "create user",
+        "description": "create the user\n",
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "request object",
+            "schema": {
+              "$ref": "#/definitions/UserRequest"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "jwt token",
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "User"
+        ],
+        "responses": {
+          "200": {
+            "description": "blog response",
+            "schema": {
+              "$ref": "#/definitions/response"
+            }
+          }
+        }
+      },
+      "get": {
+        "500": {
+          "description": "unexpected error",
+          "schema": {
+            "$ref": "#/definitions/Error"
+          }
+        },
+        "summary": "get all users",
+        "description": "create the user\n",
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "jwt token",
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "User"
+        ],
+        "responses": {
+          "200": {
+            "description": "blog response",
+            "schema": {
+              "$ref": "#/definitions/UserResponse"
+            }
+          }
+        }
+      }
+    },
+    "/collab-services/apis/userinfo/": {
+      "get": {
+        "500": {
+          "description": "unexpected error",
+          "schema": {
+            "$ref": "#/definitions/Error"
+          }
+        },
+        "summary": "get userinfo for a jwt token",
+        "description": "get the user info\n",
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "username",
+            "in": "query",
+            "description": "user username",
+            "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "jwt token",
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "User"
+        ],
+        "responses": {
+          "200": {
+            "description": "blog response",
+            "schema": {
+              "$ref": "#/definitions/UserResponse"
+            }
+          }
+        }
+      }
+    },
+    "/collab-services/apis/notification/conferenceInvitation": {
+      "post": {
+        "summary": "update a user",
+        "description": "update a user\n",
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "either of email or user_name has to be mentioned , if userName is mentioned then email will be fetched from database only",
+            "schema": {
+              "$ref": "#/definitions/inviteRequest"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "jwt token",
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Notification"
+        ],
+        "responses": {
+          "200": {
+            "description": "collab-services ",
+            "schema": {
+              "$ref": "#/definitions/UserUpdate"
+            }
+          },
+          "500": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/collab-services/apis/userinfo/email": {
+      "put": {
+        "summary": "update a user",
+        "description": "update a user\n",
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "body",
+            "schema": {
+              "$ref": "#/definitions/UserUpdate"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "jwt token",
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "User"
+        ],
+        "responses": {
+          "200": {
+            "description": "collab-services ",
+            "schema": {
+              "$ref": "#/definitions/UserUpdate"
+            }
+          },
+          "500": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/collab-services/apis/discussions/{discussionId}/voteUnVote/{voteValue}": {
+      "post": {
+        "summary": "vote the discussion",
+        "description": "vote the discussion",
+        "parameters": [
+          {
+            "name": "discussionId",
+            "in": "path",
+            "description": "id of discussion",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "voteValue",
+            "in": "path",
+            "description": "0 for unvote 1 for vote",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "jwt token",
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Discussion"
+        ],
+        "responses": {
+          "200": {
+            "description": " response",
+            "schema": {}
+          },
+          "500": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/collab-services/apis/discussions": {
+      "get": {
+        "summary": "get all discussions",
+        "description": "display all the discusioons\n",
+        "parameters": [
+          {
+            "name": "pno",
+            "in": "query",
+            "description": "page number",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "psize",
+            "in": "query",
+            "description": "Number of blogs to be returned.",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "jwt token",
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Discussion"
+        ],
+        "responses": {
+          "200": {
+            "description": "An array of blogs",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Discussions"
+              }
+            }
+          },
+          "500": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "edit a discussion",
+        "description": "edit the discussion\n",
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "discussionId",
+            "in": "query",
+            "description": "id of discussion",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "body",
+            "schema": {
+              "$ref": "#/definitions/DiscussionEdit"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "jwt token",
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Discussion"
+        ],
+        "responses": {
+          "200": {
+            "description": "collab-services ",
+            "schema": {
+              "$ref": "#/definitions/DiscussionEdit"
+            }
+          },
+          "500": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "500": {
+          "description": "unexpected error",
+          "schema": {
+            "$ref": "#/definitions/Error"
+          }
+        },
+        "summary": "create discussion",
+        "description": "create the disucssion\n",
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "request object",
+            "schema": {
+              "$ref": "#/definitions/DiscussionRequest"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "jwt token",
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Discussion"
+        ],
+        "responses": {
+          "200": {
+            "description": "blog response",
+            "schema": {
+              "$ref": "#/definitions/response"
+            }
+          }
+        }
+      }
+    },
+    "/collab-services/apis/discussions/{discussionId}": {
+      "get": {
+        "summary": "get discussion for an id",
+        "description": "display all the blogs\n",
+        "parameters": [
+          {
+            "name": "discussionId",
+            "in": "path",
+            "description": "id of blog",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "jwt token",
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Discussion"
+        ],
+        "responses": {
+          "200": {
+            "description": "An array of blogs",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/response"
+              }
+            }
+          },
+          "500": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "delete discussion for given discussion_id",
+        "description": "delete discussion for given discussion_id\n",
+        "parameters": [
+          {
+            "name": "discussionId",
+            "in": "path",
+            "description": "id of discussion",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "jwt token",
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Discussion"
+        ],
+        "responses": {
+          "204": {
+            "description": "collab-services ",
+            "schema": {
+              "$ref": "#/definitions/response"
+            }
+          },
+          "500": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/collab-services/apis/discussions/{discussionId}/comment/{commentId}": {
+      "delete": {
+        "summary": "delete comment",
+        "description": "delete comments in discussion\n",
+        "parameters": [
+          {
+            "name": "discussionId",
+            "in": "path",
+            "description": "discussion id",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "commentId",
+            "in": "path",
+            "description": "comment id",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "jwt token",
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Discussion"
+        ],
+        "responses": {
+          "200": {
+            "description": "An array of discussions",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Discussions"
+              }
+            }
+          },
+          "500": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/collab-services/apis/discussions/{discussionId}/comment": {
+      "post": {
+        "500": {
+          "description": "unexpected error",
+          "schema": {
+            "$ref": "#/definitions/Error"
+          }
+        },
+        "summary": "comment on the discussion",
+        "description": "comment on the disucssion\n",
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "discussionId",
+            "in": "path",
+            "description": "id of discussion",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "request object",
+            "schema": {
+              "$ref": "#/definitions/CommentDiscRequest"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "jwt token",
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Discussion"
+        ],
+        "responses": {
+          "200": {
+            "description": "blog response",
+            "schema": {
+              "$ref": "#/definitions/response"
+            }
+          }
+        }
+      }
+    },
+    "/collab-services/apis/answers/{answerId}/comment": {
+      "post": {
+        "500": {
+          "description": "unexpected error",
+          "schema": {
+            "$ref": "#/definitions/Error"
+          }
+        },
+        "summary": "comment on the answer",
+        "description": "comment on the answer\n",
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "answerId",
+            "in": "path",
+            "description": "id of answer",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "request object",
+            "schema": {
+              "$ref": "#/definitions/AnswerCommentRequest"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "jwt token",
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Answer"
+        ],
+        "responses": {
+          "200": {
+            "description": "blog response",
+            "schema": {
+              "$ref": "#/definitions/response"
+            }
+          }
+        }
+      }
+    },
+    "/collab-services/apis/answers/{answerId}": {
+      "put": {
+        "500": {
+          "description": "unexpected error",
+          "schema": {
+            "$ref": "#/definitions/Error"
+          }
+        },
+        "summary": "update answer of corresponding answerId",
+        "description": "update answer of corresponding answerId\n",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "answerId",
+            "in": "path",
+            "description": "id of answer",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "request object",
+            "schema": {
+              "$ref": "#/definitions/AnswerRequest"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "jwt token",
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Answer"
+        ],
+        "responses": {
+          "200": {
+            "description": "updated answer for answer id",
+            "schema": {
+              "$ref": "#/definitions/response"
+            }
+          }
+        }
+      },
+      "delete": {
+        "500": {
+          "description": "unexpected error",
+          "schema": {
+            "$ref": "#/definitions/Error"
+          }
+        },
+        "summary": "delete answer of corresponding answerId",
+        "description": "delete answer of corresponding answerId\n",
+        "parameters": [
+          {
+            "name": "answerId",
+            "in": "path",
+            "description": "id of answer",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "jwt token",
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Answer"
+        ],
+        "responses": {
+          "204": {
+            "description": "deleted answer for answer id",
+            "schema": {
+              "$ref": "#/definitions/response"
+            }
+          }
+        }
+      }
+    },
+    "/collab-services/apis/answers/{answerId}/comment/{commentId}": {
+      "delete": {
+        "summary": "delete comment for answers",
+        "description": "delete comments in answers\n",
+        "parameters": [
+          {
+            "name": "answerId",
+            "in": "path",
+            "description": "answer id",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "commentId",
+            "in": "path",
+            "description": "comment id",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "jwt token",
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Answer"
+        ],
+        "responses": {
+          "200": {
+            "description": "An array of answers",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Discussions"
+              }
+            }
+          },
+          "500": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/collab-services/apis/answers/discussion/{discussionId}": {
+      "get": {
+        "summary": "get answers for an discussion_id",
+        "description": "display all the blogs\n",
+        "parameters": [
+          {
+            "name": "discussionId",
+            "in": "path",
+            "description": "id of discussion",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "jwt token",
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Answer"
+        ],
+        "responses": {
+          "200": {
+            "description": "An array of blogs",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/response"
+              }
+            }
+          },
+          "500": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "500": {
+          "description": "unexpected error",
+          "schema": {
+            "$ref": "#/definitions/Error"
+          }
+        },
+        "summary": "post an answer to discussion",
+        "description": "comment on the disucssion\n",
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "request object",
+            "schema": {
+              "$ref": "#/definitions/AnswerRequest"
+            }
+          },
+          {
+            "name": "discussionId",
+            "in": "path",
+            "description": "id of discussion",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "jwt token",
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Answer"
+        ],
+        "responses": {
+          "200": {
+            "description": "blog response",
+            "schema": {
+              "$ref": "#/definitions/response"
+            }
+          }
+        }
+      }
+    },
+    "/collab-services/apis/answers/{answerId}/voteUnVote/{voteValue}": {
+      "post": {
+        "summary": "vote the answer",
+        "description": "vote the answer",
+        "parameters": [
+          {
+            "name": "answerId",
+            "in": "path",
+            "description": "id of answer",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "voteValue",
+            "in": "path",
+            "description": "0 for unvote 1 for vote",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "jwt token",
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Answer"
+        ],
+        "responses": {
+          "200": {
+            "description": " response",
+            "schema": {}
+          },
+          "500": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/collab-services/apis/search": {
+      "get": {
+        "summary": "Search for anything",
+        "description": "API to search for everything in collaboration platform passing a search text\n",
+        "parameters": [
+          {
+            "name": "stext",
+            "in": "query",
+            "description": "search text",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "jwt token",
+            "type": "string"
+          },
+          {
+            "name": "pno",
+            "in": "query",
+            "description": "page number",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "psize",
+            "in": "query",
+            "description": "Number of records to be returned.",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "tags": [
+          "Search"
+        ],
+        "responses": {
+          "200": {
+            "description": "Search result",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "500": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/collab-services/apis/cms/uploadUrl": {
+      "get": {
+        "summary": "Search for blogs",
+        "description": "API to search blogs in collaboration platform by passing a search text\n",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "jwt token",
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Document"
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "500": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/collab-services/apis/cms/downloadUrl/noderef/{noderef}": {
+      "get": {
+        "summary": "get the alfresco download url for file downloading",
+        "description": "get the alfresco download url for file downloading",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "jwt token",
+            "type": "string"
+          },
+          {
+            "name": "noderef",
+            "in": "path",
+            "description": "noderef of file for which download url is needed",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Document"
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "500": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/collab-services/apis/search/users": {
+      "get": {
+        "summary": "Search for users",
+        "description": "API to search collaboration platform users by passing a search text\n",
+        "parameters": [
+          {
+            "name": "stext",
+            "in": "query",
+            "description": "search text",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "jwt token",
+            "type": "string"
+          },
+          {
+            "name": "pno",
+            "in": "query",
+            "description": "page number",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "psize",
+            "in": "query",
+            "description": "Number of records to be returned.",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "tags": [
+          "Search"
+        ],
+        "responses": {
+          "200": {
+            "description": "Users found",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "500": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/collab-services/apis/search/streams": {
+      "get": {
+        "summary": "Search for streams",
+        "description": "API to search streams by passing a search text\n",
+        "parameters": [
+          {
+            "name": "stext",
+            "in": "query",
+            "description": "search text",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "jwt token",
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Search"
+        ],
+        "responses": {
+          "200": {
+            "description": "streams found",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "500": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/collab-services/apis/search/blogs": {
+      "get": {
+        "summary": "Search for blogs",
+        "description": "API to search blogs in collaboration platform by passing a search text\n",
+        "parameters": [
+          {
+            "name": "stext",
+            "in": "query",
+            "description": "search text",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "jwt token",
+            "type": "string"
+          },
+          {
+            "name": "pno",
+            "in": "query",
+            "description": "page number",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "psize",
+            "in": "query",
+            "description": "Number of records to be returned.",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "tags": [
+          "Search"
+        ],
+        "responses": {
+          "200": {
+            "description": "Blogs found",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "500": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/collab-services/apis/search/discussions": {
+      "get": {
+        "summary": "Search for discussions",
+        "description": "API to search discussions in collaboration platform by passing a search text\n",
+        "parameters": [
+          {
+            "name": "stext",
+            "in": "query",
+            "description": "search text",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "jwt token",
+            "type": "string"
+          },
+          {
+            "name": "pno",
+            "in": "query",
+            "description": "page number",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "psize",
+            "in": "query",
+            "description": "Number of records to be returned.",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "tags": [
+          "Search"
+        ],
+        "responses": {
+          "200": {
+            "description": "Discussions found",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "500": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "petstore_auth": {
+      "type": "oauth2",
+      "authorizationUrl": "https://login.microsoftonline.com/85c997b9-f494-46b3-a11d-772983cf6f11/oauth2/authorize",
+      "flow": "implicit",
+      "scopes": {
+        "write:pets": "modify pets in your account",
+        "read:pets": "read your pets"
+      }
+    },
+    "api_key": {
+      "type": "apiKey",
+      "name": "api_key",
+      "in": "header"
+    }
+  },
+  "definitions": {
+    "Discussions": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "object",
+          "properties": {
+            "discussions": {
+              "type": "string"
+            }
+          }
+        },
+        "status": {
+          "type": "object",
+          "properties": {
+            "statusCode": {
+              "type": "string",
+              "description": "status code of response"
+            },
+            "message": {
+              "type": "string",
+              "description": "message of the response"
+            }
+          }
+        }
+      }
+    },
+    "Blog": {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string",
+          "description": "Unique identifier representing a specific product for a given latitude & longitude. For example, uberX in San Francisco will have a different product_id than uberX in Los Angeles."
+        },
+        "title": {
+          "type": "string",
+          "description": "Description of product."
+        },
+        "description": {
+          "type": "string",
+          "description": "Display name of product."
+        },
+        "content": {
+          "type": "string",
+          "description": "Capacity of product. For example, 4 people."
+        },
+        "author": {
+          "type": "string",
+          "description": "Image URL representing the product."
+        },
+        "blog_id": {
+          "type": "string",
+          "description": "Image URL representing the product."
+        },
+        "liked_by": {
+          "type": "array",
+          "description": "Image URL representing the product.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "category": {
+          "type": "array",
+          "description": "Image URL representing the product.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "tags": {
+          "type": "array",
+          "description": "Image URL representing the product.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "comments": {
+          "type": "array",
+          "description": "comments for that particular blog",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "Comment": {
+      "type": "object",
+      "properties": {
+        "comment": {
+          "type": "string"
+        },
+        "commented_by": {
+          "type": "string"
+        },
+        "comment_id": {
+          "type": "string"
+        }
+      }
+    },
+    "LikedBy": {
+      "type": "string"
+    },
+    "Error": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "fields": {
+          "type": "string"
+        }
+      }
+    },
+    "BlogRequest": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "content": {
+          "type": "string"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "status": {
+          "type": "string"
+        }
+      }
+    },
+    "BlogEdit": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "content": {
+          "type": "string"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "DiscussionEdit": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "UserUpdate": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        }
+      }
+    },
+    "CommentRequest": {
+      "type": "object",
+      "properties": {
+        "comment": {
+          "type": "string"
+        }
+      }
+    },
+    "LikeRequest": {
+      "type": "object",
+      "properties": {
+        "blog_id": {
+          "type": "string"
+        },
+        "user_id": {
+          "type": "string"
+        }
+      }
+    },
+    "UserRequest": {
+      "type": "object",
+      "properties": {
+        "employee_id": {
+          "type": "string"
+        },
+        "first_name": {
+          "type": "string"
+        },
+        "last_name": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "user_name": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "full_name": {
+          "type": "string"
+        }
+      }
+    },
+    "inviteRequest": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "content": {
+          "type": "string"
+        },
+        "user_name": {
+          "type": "string"
+        }
+      }
+    },
+    "DiscussionRequest": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "content": {
+          "type": "string"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "CommentDiscRequest": {
+      "type": "object",
+      "properties": {
+        "comment": {
+          "type": "string"
+        }
+      }
+    },
+    "AnswerCommentRequest": {
+      "type": "object",
+      "properties": {
+        "comment": {
+          "type": "string"
+        }
+      }
+    },
+    "AnswerRequest": {
+      "type": "object",
+      "properties": {
+        "content": {
+          "type": "string"
+        }
+      }
+    },
+    "UserResponse": {
+      "type": "object",
+      "properties": {
+        "user_id": {
+          "type": "string"
+        }
+      }
+    },
+    "Content": {
+      "type": "Object",
+      "properties": {
+        "content": {
+          "type": "string"
+        }
+      }
+    },
+    "updateProfilePic": {
+      "type": "Object",
+      "properties": {
+        "profile_pic_filename": {
+          "type": "string"
+        },
+        "profile_pic_noderef": {
+          "type": "string"
+        }
+      }
+    },
+    "myBlogsResponse": {
+      "type": "Object",
+      "properties": {
+        "data": {
+          "type": "Object",
+          "ref": ""
+        },
+        "status": {
+          "type": "Object",
+          "ref": ""
+        }
+      }
+    },
+    "response": {
+      "type": "Object",
+      "properties": {
+        "data": {
+          "type": "Object",
+          "ref": ""
+        },
+        "status": {
+          "type": "Object",
+          "ref": ""
+        }
+      }
+    },
+    "postRequest": {
+      "type": "Object",
+      "properties": {
+        "content": {
+          "type": "string"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "fileNoderef": {
+          "type": "string"
+        },
+        "fileName": {
+          "type": "string"
+        }
+      }
+    },
+    "linkRequest": {
+      "type": "Object",
+      "properties": {
+        "link": {
+          "type": "string"
+        }
+      }
+    },
+    "ChannelRequest": {
+      "type": "Object",
+      "properties": {
+        "channel_name": {
+          "type": "string"
+        }
+      }
+    },
+    "postStream": {
+      "type": "Object",
+      "properties": {
+        "stream_name": {
+          "type": "string"
+        },
+        "subscribers": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "MessageRequest": {
+      "type": "Object",
+      "properties": {
+        "content": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

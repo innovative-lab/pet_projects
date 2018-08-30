@@ -1,0 +1,7 @@
+collaboration-platform-services/node_modules/
+collaboration-platform-services/dist/
+collaboration-platform-services/npm-debug.log
+collaboration-platform-services/.project
+collaboration-platform-services/logs
+collaboration-platform-services/coverage
+.vscode

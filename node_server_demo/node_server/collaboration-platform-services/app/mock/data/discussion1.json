@@ -1,0 +1,17 @@
+
+      {
+        "discussion_id": "mock_discussion_1",
+        "title": "How to check if column exists in SQL Server table",
+        "postedBy": "",
+        "description": "I need to add a specific column if it does not exist. I have something like this, but it always returns false:IF EXISTS(SELECT *FROM   INFORMATION_SCHEMA.COLUMNS WHERE  TABLE_NAME = 'myTableName' AND COLUMN_NAME = 'myColumnName')How can I check if a column exists in a table of SQL Server database? ",
+        "dateOfPostingDiscussion": "2016-06-01T06:05:59.047Z",
+        "comments": {"comment_id": "mock_discussion_comment_1",
+                      "content": "This is Good",
+                      "commented_by": "",
+                      "commented_date": "2016-06-01T06:05:59.047Z"
+                      },
+        "voted_by": ["M1034342@mindtree.com"],
+        "tags": ["clojure"],
+        "viewed_by": ["M1034342@mindtree.com"],
+        "answers":[]
+      }

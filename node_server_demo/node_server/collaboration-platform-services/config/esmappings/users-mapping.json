@@ -1,0 +1,32 @@
+{
+  "users":{
+     "properties" : {
+                    "user_name" : {
+                        "type" : "string",
+                        "analyzer":"autocomplete"
+                    },
+                    "first_name" : {
+                        "type" : "string",
+                        "analyzer": "autocomplete"
+                    },
+                    "last_name" : {
+                        "type" : "string",
+                        "analyzer": "autocomplete"
+                    },
+                    "employee_id" : {
+                        "type" : "string",
+                        "analyzer":"autocomplete"
+                    },
+                    "profile_pic_filename" : {
+                        "type" : "string"
+                    },
+                    "profile_pic_noderef" : {
+                        "type" : "string"
+                    },
+                    "full_name":{
+                        "type" : "string",
+                        "analyzer": "autocomplete"
+                    }
+                }
+  }
+}

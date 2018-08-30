@@ -1,0 +1,6 @@
+
+      {
+        "category": "BigData",
+        "description":"Data Handling of Huge Amount Of Datas.",
+        "tags": ["hadoop","spark","mapreduce","cassandra"]
+      }

@@ -1,0 +1,15 @@
+
+      {
+        "answer_id": "mock_answer_1",
+        "answer": "The point about permissions on viewing metadata applies to all answers not just this one.Note that the first parameter table name to COL_LENGTH can be in one, two, or three part name format as required.An example referencing a table in a different database isCOL_LENGTH('AdventureWorks2012.HumanResources.Department','ModifiedDate')",
+        "answered_by": "",
+        "dateOfPostingAnswer": "2016-06-01T06:05:59.047Z",
+        "comments": {
+                        "comment_id": "mock_answer_comment_1",
+                        "content": "This is Good",
+                        "commented_by": "",
+                        "commented_date": "2016-06-01T06:05:59.047Z"
+                    },
+                    "voted_by": ["M1034342@mindtree.com"],
+                    "tags": ["mapreduce"]
+            }

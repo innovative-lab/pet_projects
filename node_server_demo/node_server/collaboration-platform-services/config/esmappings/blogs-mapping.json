@@ -1,0 +1,24 @@
+{
+    "blogs": {
+        "properties" : {
+            "created_by": {
+                "type" : "object",
+                "properties" : {
+                    "user_name" : {
+                        "type" : "string"
+                    },
+                    "first_name" : {
+                        "type" : "string"
+                    },
+                    "last_name" : {
+                        "type" : "string"
+                    }
+                }
+            },
+            "title":{"type":"string","analyzer":"autocomplete"},
+            "blog_id":{"type":"string"},
+            "tags" : {"type" : "string"},
+            "created_at":{"type":"date"}
+        }
+    }
+}

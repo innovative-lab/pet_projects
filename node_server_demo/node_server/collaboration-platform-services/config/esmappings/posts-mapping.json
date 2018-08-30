@@ -1,0 +1,35 @@
+{
+    "posts": {
+        "properties" : {
+            "created_by": {
+                "type" : "object",
+                "properties" : {
+                    "user_name" : {
+                        "type" : "string"
+                    },
+                    "first_name" : {
+                        "type" : "string"
+                    },
+                    "last_name" : {
+                        "type" : "string"
+                    }
+                }
+            },
+            "content":{"type":"string","analyzer": "autocomplete"},
+            "post_id":{"type":"string"},
+            "tags" : {"type" : "string"},
+            "created_at":{"type":"date"},
+            "file": {
+                  "type":"object",
+                  "properties":{
+                    "name": {
+                        "type":"string"
+                    },
+                    "noderef":{
+                        "type":"string"
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,173 @@
+DELETE collaboration-platform
+
+PUT /collaboration-platform/
+{
+    "settings": {
+        "analysis": {
+            "filter": {
+                "autocomplete_filter": {
+                    "type":     "edge_ngram",
+                    "min_gram":3,
+                    "max_gram": 10
+                }
+            },
+            "analyzer": {
+                "autocomplete": {
+                    "type":      "custom",
+                    "tokenizer": "standard",
+                    "filter": [
+                        "lowercase",
+                        "autocomplete_filter"
+                    ]
+                }
+            }
+        }
+    }
+}
+
+PUT /collaboration-platform/_mapping/blogs
+{
+    "mappings":{
+        "blogs": {
+        "properties" : {
+            "created_by": {
+                "type" : "object",
+                "properties" : {
+                    "user_name" : {
+                        "type" : "string"
+                    },
+                    "first_name" : {
+                        "type" : "string"
+                    },
+                    "last_name" : {
+                        "type" : "string"
+                    }
+                }
+            },
+            "title":{"type":"string","analyzer":"autocomplete"},
+            "blog_id":{"type":"string"},
+            "tags" : {"type" : "string"},
+            "created_at":{"type":"date"}
+        }
+    },
+    "discussions": {
+        "properties" : {
+            "created_by": {
+                "type" : "object",
+                "properties" : {
+                    "user_name" : {
+                        "type" : "string"
+                    },
+                    "first_name" : {
+                        "type" : "string"
+                    },
+                    "last_name" : {
+                        "type" : "string"
+                    }
+                }
+            },
+            "title":{"type":"string","analyzer":"autocomplete"},
+            "discussion_id":{"type":"string"},
+            "tags" : {"type" : "string"},
+            "created_at":{"type":"date"}
+        }
+    },
+    "answers": {
+        "properties" : {
+            "created_by": {
+                "type" : "object",
+                "properties" : {
+                    "user_name" : {
+                        "type" : "string"
+                    },
+                    "first_name" : {
+                        "type" : "string"
+                    },
+                    "last_name" : {
+                        "type" : "string"
+                    }
+                }
+            },
+            "answer":{"type":"string","analyzer":"autocomplete"},
+            "answer_id":{"type":"string"},
+            "tags" : {"type" : "string"},
+            "created_at":{"type":"date"},
+            "discussion": {
+                  "type":"object",
+                  "properties":{
+                    "title": {
+                        "type":"string"
+                    },
+                    "discussion_id":{
+                        "type":"string"
+                    }
+                }
+            }
+        }
+    },
+    "posts": {
+        "properties" : {
+            "created_by": {
+                "type" : "object",
+                "properties" : {
+                    "user_name" : {
+                        "type" : "string"
+                    },
+                    "first_name" : {
+                        "type" : "string"
+                    },
+                    "last_name" : {
+                        "type" : "string"
+                    }
+                }
+            },
+            "content":{"type":"string","analyzer": "autocomplete"},
+            "post_id":{"type":"string"},
+            "tags" : {"type" : "string"},
+            "created_at":{"type":"date"},
+            "file": {
+                  "type":"object",
+                  "properties":{
+                    "name": {
+                        "type":"string"
+                    },
+                    "noderef":{
+                        "type":"string"
+                    }
+                }
+            }
+        }
+    },
+     "streams": {
+        "properties" : {
+            "name":{"type":"string","analyzer":"autocomplete"}
+        }
+    },
+    "users":{
+     "properties" : {
+                    "user_name" : {
+                        "type" : "string",
+                        "analyzer": "autocomplete"
+                    },
+                    "first_name" : {
+                        "type" : "string"
+                    },
+                    "last_name" : {
+                        "type" : "string"
+                    },
+                    "employee_id" : {
+                        "type" : "string"
+                    },
+                    "profile_pic_filename" : {
+                        "type" : "string"
+                    },
+                    "profile_pic_noderef" : {
+                        "type" : "string"
+                    },
+                    "full_name":{
+                        "type" : "string"
+                    }
+                }
+  }
+ }
+}

@@ -1,0 +1,7 @@
+{
+    "streams": {
+        "properties" : {
+            "name":{"type":"string","analyzer":"autocomplete"}
+        }
+    }
+}

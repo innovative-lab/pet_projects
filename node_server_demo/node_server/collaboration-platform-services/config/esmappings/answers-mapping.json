@@ -1,0 +1,35 @@
+{
+    "answers": {
+        "properties" : {
+            "created_by": {
+                "type" : "object",
+                "properties" : {
+                    "user_name" : {
+                        "type" : "string"
+                    },
+                    "first_name" : {
+                        "type" : "string"
+                    },
+                    "last_name" : {
+                        "type" : "string"
+                    }
+                }
+            },
+            "content":{"type":"string","analyzer":"autocomplete"},
+            "answer_id":{"type":"string"},
+            "tags" : {"type" : "string"},
+            "created_at":{"type":"date"},
+            "discussion": {
+                  "type":"object",
+                  "properties":{
+                    "title": {
+                        "type":"string"
+                    },
+                    "discussion_id":{
+                        "type":"string"
+                    }
+                }
+            }
+        }
+    }
+}
